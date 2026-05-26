@@ -90,7 +90,7 @@ class TextWatermarker:
 
 
 # Quick functional aliases for ease of use
-def embed_watermark(text: str, watermark: str) -> str:
+def embed_watermark(text: str, watermark: str = WATERMARK) -> str:
     return TextWatermarker.embed(text, watermark)
 
 
