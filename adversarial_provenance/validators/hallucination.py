@@ -7,7 +7,13 @@ def hallucination_score(output: str) -> float:
         "might",
         "could be",
         "uncertain",
-        "not verified"
+        "not verified",
+        "sources vary",
+        "URL is",
+        "well-documented fact",
+        "generally understood",
+        "commonly believed",
+        "unverified claim",
     ]
 
     score = 0.0
