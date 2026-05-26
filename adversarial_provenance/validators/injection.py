@@ -37,4 +37,4 @@ INJECTION_PATTERNS = SIMPLPE_INJECTION_PATTERNS + COMPLEX_INJECTION_PATTERNS
 
 def detect_prompt_injection(prompt: str) -> bool:
     lowered = prompt.lower()
-    return any(pattern in lowered for pattern in INJECTION_PATTERNS)
+    return any(pattern.lower() in lowered for pattern in INJECTION_PATTERNS)
