@@ -9,7 +9,7 @@ from .exceptions import PromptInjectionDetected
 
 from .validators.injection import detect_prompt_injection
 from .validators.toxicity import toxicity_score
-from .validators.hallucination import hallucination_score
+from .validators.hallucination import SingleStringEvaluator   
 from .validators.risk import calculate_risk_score
 from .validators.pii import detect_pii
 
@@ -53,7 +53,7 @@ class APSMiddleware:
 
         output = response.choices[0].message.content
 
-        hallucination = hallucination_score(output)
+        hallucination = SingleStringEvaluator.assess_risk((output))["hallucination_risk_score"]
         toxicity = toxicity_score(output)
 
         pii_results = detect_pii(output)
