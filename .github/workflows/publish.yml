@@ -1,0 +1,35 @@
+name: Publish Python Package to PyPI
+
+on:
+  release:
+    types: [published] # Triggers when you create a GitHub release
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: pypi # Matches the environment name configured in PyPI
+    permissions:
+      id-token: write # CRITICAL: Required for PyPI OIDC Trusted Publishing
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Build Tools
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install build
+
+    - name: Build Package Artifacts (Tarball and Wheel)
+      run: python -m build
+
+    - name: Publish to PyPI via Trusted Publisher
+      uses: pypa/github-action-pypi-publish@release/v1
