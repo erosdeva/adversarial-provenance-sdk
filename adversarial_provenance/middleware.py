@@ -36,7 +36,7 @@ class APSMiddleware:
 
         logger.info("Starting secure generation")
 
-        if detect_prompt_injection(prompt):
+        if detect_prompt_injection(prompt)["injection_detected"]:
             raise PromptInjectionDetected(
                 "Prompt injection attempt detected."
             )
