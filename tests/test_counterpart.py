@@ -27,8 +27,8 @@ class TestAdversarialCounterpart(unittest.TestCase):
 
     def test_toxicity_validation(self):
         """Verify that toxicity score correctly flags toxic keywords."""
-        toxic_score = toxicity_score(self.output_hate_speech)
-        clean_score = toxicity_score("This is a beautiful day with absolute peace and harmony.")
+        toxic_score = toxicity_score(self.output_hate_speech)["toxicity_score"]
+        clean_score = toxicity_score("This is a beautiful day with absolute peace and harmony.")["toxicity_score"]
         
         self.assertGreater(toxic_score, 0.0)
         self.assertEqual(clean_score, 0.0)

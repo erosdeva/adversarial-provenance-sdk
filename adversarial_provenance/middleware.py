@@ -54,7 +54,7 @@ class APSMiddleware:
         output = response.choices[0].message.content
 
         hallucination = SingleStringEvaluator.assess_risk((output))["hallucination_risk_score"]
-        toxicity = toxicity_score(output)
+        toxicity = toxicity_score(output)["toxicity_score"]
 
         pii_results = detect_pii(output)
 
